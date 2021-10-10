@@ -54,7 +54,20 @@ figure;
 bodemag(K_wy);
 title('M(\omega)');
 
-
+%SIMULINK
+a1 = 6;
+h10 = 0;
+c1 = 4;
+q10 = 5;
+res = sim('LAB1old',20);
+figure, plot(res.tout, res.Flow); grid;
+title('Flow');
+xlabel('Czas');
+ylabel('Wyjscie q12');
+figure, plot(res.tout, res.Level1); grid;
+title('Level1');
+xlabel('Czas');
+ylabel('Wyjscie h1');
 
 %nie wpisywa� warto�ci w simulinku (wszystko w skrypcie nawet sta�e)
 %prze�wiczy� tworzenie

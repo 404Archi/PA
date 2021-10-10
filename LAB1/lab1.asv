@@ -15,11 +15,12 @@ pzmap(K);
 ss(K)
 [A, B, C, D]=tf2ss(Licz, Mian)
 %PKT 3
+figure;
 step(K, 'r');
 grid on;
 title(['Odp. skokowa, k=' num2str(k)]);
-ylabel('opis osi y');
-xlabel('opis osi x');
+ylabel('wyjsie ukladu');
+xlabel('czas t');
 %PKT 4
 figure, nyquist(K);
 figure, bodeplot(K);
@@ -30,28 +31,37 @@ grid on;
 rlocus(K);
 grid on;
 %PKT6
-kr = 0.5 * 1.43;
+kr = 0.5 * 1.43
 %PKT7
-[DA, DF] = margin(kr*K);
+[DA, DF] = margin(kr*K)
 %PKT8
-minreal(K);
+minreal(K)
 %PKT9
 
 K2 = K * kr;
 K_wy = minreal( K2 / (1 + K2) );
 K_we = minreal( 1 / (1 + K2) );
-
-
+figure;
 zpk(K_wy);
 zpk(K_we);
 step(K_wy, 'k', K_we, '--m');
+legend('y(t)','e(t)');
 %PKT10
+figure;
 bodemag(K_we);
 title('q(\omega)');
+figure;
 bodemag(K_wy);
 title('M(\omega)');
 
-
+%SIMULINK
+a1 = 420;
+h10 = 2137;
+c1 = 69;
+q10 = 628;
+res = sim('LAB1old');
+plot(res.tout, res.Flow);
+figure, plot(res.tout, resLevel1); grid;
 
 %nie wpisywa� warto�ci w simulinku (wszystko w skrypcie nawet sta�e)
 %prze�wiczy� tworzenie
