@@ -59,7 +59,7 @@ a1 = 6;
 h10 = 0;
 c1 = 4;
 q10 = 5;
-res = sim('LAB1old',20);
+res = sim('LAB1old',10);
 figure, plot(res.tout, res.Flow); grid;
 title('Flow');
 xlabel('Czas');
