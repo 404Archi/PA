@@ -17,7 +17,7 @@ H2 = 17;
 C2 = 2.91548;
 A2 = pi * (R2 ^ 2);
 
-dq1 = 1;
+dq1 = 0.01;
 q10 = C2 * sqrt(H2/2);
 h10 = (q10 / C1) .^ 2;
 h20 = 1/2 .* H2;
@@ -33,15 +33,12 @@ zpk(K)
 
 [x,y] = tfdata(K, 'v');
 
+
+
 res = sim('lab2s', 150);
 
 figure;
-hold on;
-grid on;
-plot(res, simout1, 'r');
-plot(res, simout, 'g--');
-xlabel('time');
-ylabel('h2');
+plot(res.tout, res.simout1)
 
 % a2 = R2/H2 * h2^2 * pi;
 % v2 = 1/3 * a2 * h2
