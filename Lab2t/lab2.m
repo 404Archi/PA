@@ -22,6 +22,8 @@ q10 = C2 * sqrt(H2/2);
 h10 = (q10 / C1) .^ 2;
 h20 = 1/2 .* H2;
 
+T3 = 4;
+
 s = tf('s');
 K = (2 * sqrt(h10));
 K = K  * ((pi * R2^2 * h20^2 * s / H2^2) + (C2 / (2 * sqrt(h20))));
@@ -29,19 +31,28 @@ K = K * ((A1 * s) + (C1 / (2 * sqrt(h10))));
 
 K = C1 / K;
 
+Kw = 1/(T3*s+1);
+
+kr = 2.702;
+
+Kr_p = kr/(1+0*s);
+Kr_pi = 
+
 zpk(K)
 
 [x,y] = tfdata(K, 'v');
+[x1, y1] = tfdata(Kw, 'v');
+[x2, y2] = tfdata(Kr_p,'v');
 
 res = sim('lab2s', 150);
 
-figure;
-hold on;
-grid on;
-plot(res, simout1, 'r');
-plot(res, simout, 'g--');
-xlabel('time');
-ylabel('h2');
+% figure;
+% hold on;
+% grid on;
+% plot(res, simout1, 'r');
+% plot(res, simout, 'g--');
+% xlabel('time');
+% ylabel('h2');
 
 % a2 = R2/H2 * h2^2 * pi;
 % v2 = 1/3 * a2 * h2
